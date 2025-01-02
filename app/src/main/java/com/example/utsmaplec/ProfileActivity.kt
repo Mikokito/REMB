@@ -25,6 +25,10 @@ import java.io.IOException
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import android.widget.Toast
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -96,13 +100,8 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA),
-                REQUEST_CAMERA_PERMISSION
-            )
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
         } else {
             openCamera()
         }
@@ -115,45 +114,18 @@ class ProfileActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openCamera()
             } else {
-                // Izin kamera tidak diberikan, tampilkan pesan ke pengguna
+                Toast.makeText(this, "Camera permission is required to use the camera", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun performLogout() {
-        // Tampilkan pop-up konfirmasi log out
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_logout_confirmation, null)
-        val cancelText = dialogView.findViewById<TextView>(R.id.dialog_cancel)
-        val confirmText = dialogView.findViewById<TextView>(R.id.dialog_confirm)
-
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        // Handle tombol No
-        cancelText.setOnClickListener {
-            dialog.dismiss() // Tutup dialog
-        }
-
-        // Handle tombol Yes
-        confirmText.setOnClickListener {
-            // Hapus status login dari SharedPreferences
-            val sharedPreferences: SharedPreferences =
-                getSharedPreferences("USER_PREF", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.clear() // Hapus semua data
-            editor.apply()
-
-            // Arahkan pengguna kembali ke StartActivity
-            val intent = Intent(this, StartActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        auth.signOut() // Sign out the user
+        // Redirect to StartActivity
+        val intent = Intent(this, StartActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun showChangeAccountNameDialog() {
@@ -245,14 +217,21 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun openCamera() {
+        Log.d("ProfileActivity", "Attempting to open camera")
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        val photoURI = createImageFile()?.let {
-            FileProvider.getUriForFile(this, "${packageName}.fileprovider", it)
-        }
+        if (cameraIntent.resolveActivity(packageManager) != null) {
+            Log.d("ProfileActivity", "Camera app found")
+            val photoURI = createImageFile()?.let {
+                FileProvider.getUriForFile(this, "${packageName}.fileprovider", it)
+            }
 
-        if (photoURI != null) {
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+            if (photoURI != null) {
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        } else {
+            Log.d("ProfileActivity", "No camera app found")
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -277,12 +256,8 @@ class ProfileActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as? Bitmap
-                    // Tampilkan gambar di ImageView atau simpan gambar
-                }
-                REQUEST_IMAGE_PICK -> {
-                    val selectedImageUri = data?.data
-                    // Tampilkan gambar dari galeri di ImageView atau simpan URI
+                    // Handle the image captured from the camera
+                    // You can display the image or save it as needed
                 }
             }
         }
@@ -421,6 +396,24 @@ class ProfileActivity : AppCompatActivity() {
                     Log.e("ProfileActivity", "Error getting document: ${e.message}")
                 }
         }
+    }
+
+    private fun scheduleNotification(taskTitle: String, taskDescription: String, deadline: Long) {
+        val intent = Intent(this, NotificationReceiver::class.java).apply {
+            putExtra("task_title", taskTitle)
+            putExtra("task_description", taskDescription)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, deadline, pendingIntent) // Schedule the notification
+    }
+
+    private fun addTask(taskTitle: String, taskDescription: String, deadline: Long) {
+        // Your existing logic to add the task to Firestore
+
+        // Schedule a notification for the task
+        scheduleNotification(taskTitle, taskDescription, deadline)
     }
 
     companion object {

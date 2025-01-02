@@ -4,27 +4,34 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.example.utsmaplec.StartActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Animasi saat masuk
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
-        Handler().postDelayed({
-            val intent = Intent(
-                this@SplashActivity,
-                StartActivity::class.java
-            )
-            startActivity(intent)
-            finish()
-
-            // Animasi saat keluar
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }, 3000)
+        // Check if user is logged in
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            // User is signed in, redirect to HomeActivity
+            Handler().postDelayed({
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 3000) // Delay for splash screen
+        } else {
+            // User is not signed in, redirect to StartActivity
+            Handler().postDelayed({
+                val intent = Intent(this, StartActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 3000) // Delay for splash screen
+        }
     }
-
 }
