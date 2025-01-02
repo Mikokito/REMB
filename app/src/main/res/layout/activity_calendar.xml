@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".CalendarActivity">
+
+    <!--  Box baru buat isi content, biat navbar g kena efek  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Text Calendar di paling atas -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendar"
+            android:fontFamily="@font/poppins"
+            android:textColor="#DE000000"
+            android:textSize="20sp"
+            android:letterSpacing="-0.025"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Nampilin Calendar -->
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--text view for displaying the selected date-->
+        <!-- Date yg ke select muncul disini,
+        ganti biar nampilin task apa yg ada di hari ini -->
+        <TextView
+            android:id="@+id/recycler_view_calendar_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Select a date to see tasks"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Text View untuk task -->
+        <!-- atau bisa pake ini buat nampilin tasknya -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_todaytasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+    <!--  Bottom Navigation Bar, ini navbar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/pastel_purple"
+        android:elevation="15dp"
+        app:itemIconSize="30dp"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:clickable="false"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/purple_button"
+            app:tint="@android:color/white" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</LinearLayout>

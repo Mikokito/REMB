@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "114911893438",
+    "firebase_url": "https://remb-1b312-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "remb-1b312",
+    "storage_bucket": "remb-1b312.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114911893438:android:459bf8789d87fb89c98bef",
+        "android_client_info": {
+          "package_name": "com.example.utsmaplec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI332Y2TJdsui5AfKeTyvOLDsPOAVk7ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

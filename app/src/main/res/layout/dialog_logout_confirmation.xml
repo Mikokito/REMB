@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Are you sure want to log out?"
+        android:fontFamily="@font/poppins"
+        android:textSize="16sp"
+        android:paddingBottom="16dp"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/dialog_cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textColor="@color/purple_button"
+            android:fontFamily="@font/poppins"
+            android:layout_marginEnd="16dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/dialog_confirm"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:background="@color/purple_button"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:gravity="center" />
+    </LinearLayout>
+</LinearLayout>

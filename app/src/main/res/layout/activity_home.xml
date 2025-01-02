@@ -1,0 +1,134 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--  Box baru buat isi content, biat navbar g kena efek  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Bar, ini box buat home sama foto profile, ganti aja kalo mau -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:padding="16dp">
+
+            <!-- Home Text in the Center, Aligned with Profile Image -->
+            <TextView
+                android:id="@+id/home_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Search Bar -->
+        <!-- ini box buat search bar -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp">
+
+            <!-- Search View -->
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search tasks..." />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nampilin task yg udh ke add di sini -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp" />
+
+        <!-- Kalo task kosong tampilin ini -->
+        <ImageView
+            android:id="@+id/empty_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/background"
+            android:visibility="gone" />
+
+        <!-- Kalo task kosong tampilin ini -->
+        <TextView
+            android:id="@+id/empty_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="What do you want to do today?"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <!-- Kalo task kosong tampilin ini -->
+        <TextView
+            android:id="@+id/empty_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Tap + to add your tasks"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@android:color/darker_gray"
+            android:visibility="gone" />
+
+        <!-- View untuk mengisi ruang bawah -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" /> <!-- Ini mengisi ruang bawah -->
+
+    </LinearLayout>
+
+    <!--  Bottom Navigation Bar, ini navbar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/pastel_purple"
+        android:elevation="15dp"
+        app:itemIconSize="30dp"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:clickable="false"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/purple_button"
+            app:tint="@android:color/white" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</LinearLayout>

@@ -1,0 +1,93 @@
+<!-- res/layout/activity_register.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#FFFFFF"> <!-- Optional: Set a background color -->
+
+    <!-- REMB Text at the top center -->
+    <TextView
+        android:id="@+id/textViewAppTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REMB"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        android:textColor="#000000" /> <!-- Black text color -->
+
+    <!-- Name Field -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:backgroundTint="#9B6BFF"
+        android:textColorHint="#B0B0B0"/>
+
+    <!-- Name Field -->
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:backgroundTint="#9B6BFF"
+        android:textColorHint="#B0B0B0"/>
+
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:backgroundTint="#9B6BFF"
+        android:textColorHint="#B0B0B0"/>
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"
+        android:backgroundTint="#9B6BFF"
+        android:textColorHint="#B0B0B0"/>
+
+    <!-- Confirm Password Field -->
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:backgroundTint="#9B6BFF"
+        android:textColorHint="#B0B0B0"/>
+
+    <!-- Register Button -->
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:backgroundTint="#9B6BFF"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="24dp"/>
+
+</LinearLayout>

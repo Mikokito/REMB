@@ -1,0 +1,47 @@
+<!-- res/layout/activity_start.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Remb"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please login to your account or create new account to continue"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:backgroundTint="#9B6BFF"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CREATE AN ACCOUNT"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="#9B6BFF"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_border"/>
+
+</LinearLayout>

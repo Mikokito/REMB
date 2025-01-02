@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/pastel_purple">
+
+    <!--  Title  -->
+    <TextView
+        android:id="@+id/title_add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Task"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp" />
+
+    <!--  Input Nama Task  -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp">
+
+        <EditText
+            android:id="@+id/edit_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Task Title"
+            android:padding="12dp"
+            android:fontFamily="@font/poppins"
+            android:background="@android:color/transparent"
+            android:inputType="text" />
+    </androidx.cardview.widget.CardView>
+
+    <!--  Input Deskripsi Task  -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp">
+
+        <EditText
+            android:id="@+id/edit_task_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:padding="12dp"
+            android:fontFamily="@font/poppins"
+            android:background="@android:color/transparent"
+            android:inputType="textMultiLine"
+            android:lines="3" />
+    </androidx.cardview.widget.CardView>
+
+    <!--  Pilih tanggal  -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--  Submit  -->
+    <Button
+        android:id="@+id/btn_submit_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Add Task"
+        android:textSize="16sp" />
+</LinearLayout>
